@@ -1,0 +1,52 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._]+$"
+        },
+        "automationAccountName": {
+            "required": true,
+            "type": "string"
+        },
+        "scheduleName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The parameters supplied to the update schedule operation.",
+            "properties": {
+                "name": {
+                    "description": "Gets or sets the name of the Schedule.",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Gets or sets the list of schedule properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "description": {
+                            "description": "Gets or sets the description of the schedule.",
+                            "type": "string"
+                        },
+                        "isEnabled": {
+                            "description": "Gets or sets a value indicating whether this schedule is enabled.",
+                            "type": "boolean"
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

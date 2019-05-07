@@ -1,0 +1,134 @@
+{
+    "title": "AutomationManagement",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/automation-schedule/2015-10-31/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Schedule_ListByAutomationAccount": {
+            "main": "./lib/actions/Schedule_ListByAutomationAccount.js",
+            "title": "Retrieve a list of schedules.",
+            "description": "Retrieve a list of schedules.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Schedule_ListByAutomationAccount.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Schedule_Delete": {
+            "main": "./lib/actions/Schedule_Delete.js",
+            "title": "Delete the schedule identified by schedule name.",
+            "description": "Delete the schedule identified by schedule name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Schedule_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Schedule_Get": {
+            "main": "./lib/actions/Schedule_Get.js",
+            "title": "Retrieve the schedule identified by schedule name.",
+            "description": "Retrieve the schedule identified by schedule name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Schedule_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Schedule_Update": {
+            "main": "./lib/actions/Schedule_Update.js",
+            "title": "Update the schedule identified by schedule name.",
+            "description": "Update the schedule identified by schedule name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Schedule_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Schedule_CreateOrUpdate": {
+            "main": "./lib/actions/Schedule_CreateOrUpdate.js",
+            "title": "Create a schedule.",
+            "description": "Create a schedule.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Schedule_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

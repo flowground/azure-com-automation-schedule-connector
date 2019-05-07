@@ -1,0 +1,144 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 90,
+            "pattern": "^[-\\w\\._]+$"
+        },
+        "automationAccountName": {
+            "required": true,
+            "type": "string"
+        },
+        "scheduleName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The parameters supplied to the create or update schedule operation.",
+            "properties": {
+                "name": {
+                    "description": "Gets or sets the name of the Schedule.",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "Gets or sets the list of schedule properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "advancedSchedule": {
+                            "description": "Gets or sets the AdvancedSchedule.",
+                            "properties": {
+                                "monthDays": {
+                                    "description": "Days of the month that the job should execute on. Must be between 1 and 31.",
+                                    "items": {
+                                        "format": "int32",
+                                        "type": "integer",
+                                        "nullable": false
+                                    },
+                                    "type": "array"
+                                },
+                                "monthlyOccurrences": {
+                                    "description": "Occurrences of days within a month.",
+                                    "items": {
+                                        "description": "The properties of the create advanced schedule monthly occurrence.",
+                                        "properties": {
+                                            "day": {
+                                                "description": "Day of the occurrence. Must be one of monday, tuesday, wednesday, thursday, friday, saturday, sunday.",
+                                                "enum": [
+                                                    "Monday",
+                                                    "Tuesday",
+                                                    "Wednesday",
+                                                    "Thursday",
+                                                    "Friday",
+                                                    "Saturday",
+                                                    "Sunday"
+                                                ],
+                                                "type": "string",
+                                                "x-ms-enum": {
+                                                    "modelAsString": true,
+                                                    "name": "ScheduleDay"
+                                                }
+                                            },
+                                            "occurrence": {
+                                                "description": "Occurrence of the week within the month. Must be between 1 and 5",
+                                                "format": "int32",
+                                                "type": "integer"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "weekDays": {
+                                    "description": "Days of the week that the job should execute on.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "description": {
+                            "description": "Gets or sets the description of the schedule.",
+                            "type": "string"
+                        },
+                        "expiryTime": {
+                            "description": "Gets or sets the end time of the schedule.",
+                            "format": "date-time",
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "frequency": {
+                            "type": "string",
+                            "description": "Gets or sets the frequency of the schedule.",
+                            "enum": [
+                                "OneTime",
+                                "Day",
+                                "Hour",
+                                "Week",
+                                "Month"
+                            ],
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "ScheduleFrequency"
+                            }
+                        },
+                        "interval": {
+                            "description": "Gets or sets the interval of the schedule."
+                        },
+                        "startTime": {
+                            "description": "Gets or sets the start time of the schedule.",
+                            "format": "date-time",
+                            "type": "string",
+                            "nullable": false
+                        },
+                        "timeZone": {
+                            "description": "Gets or sets the time zone of the schedule.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "startTime",
+                        "frequency"
+                    ]
+                }
+            },
+            "required": [
+                "name",
+                "properties"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
